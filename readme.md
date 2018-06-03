@@ -15,6 +15,9 @@ Dataset comprising records for comic-books and books relating to comics in the B
 
 #### Academy Award Nominee Metadata
 
+#### British Pound to US Dollar Conversion Data
+This is a GBP to USD conversion rate dataset from 1927 to 2017 downloaded from [MeasuringWorth.com](https://www.measuringworth.com).
+
 ### Organizing Comics Metadata
 This portion is adapted from [Thomas Padilla's 'Getting Started with OpenRefine'](http://thomaspadilla.org/dataprep/)
 
@@ -80,7 +83,7 @@ Since there's a limit of 2,500 requests per day and the API takes a bit of time,
 
 > Some software will want latitude and longitude separately. If that's the case, Edit latlng Column > Split into several columns... and then split by the substring ","
 
-### Saving and Exporting
+#### Saving and Exporting
 In the top right corner, you can click on 'Export' and save the data in a number of different formats, including csv and HTML tables.
 
 You may also want to export the entire project. This is useful if you want to share the project with others, or if you want to continue working on a different machine. It's also useful for transparency and documentation, as every change you've made is documented (and reversible).
@@ -94,7 +97,28 @@ You may also want to export the entire project. This is useful if you want to sh
 - The new 'geocodingResponse' column won't be very clear or useful - it will be the full JSON response with all of the information Google has about that location.
 - Click geocodingResponse > Edit Column > Add Column based on this column
 - Enter `with(value.parseJson().resourceSets[0].resources[0].point.coordinates, pair, pair[0] +", " + pair[1])` and call the new column 'latlng.' Hit OK. This will parse the JSON and correctly format the latitute and longitude in the neew column.
-- You should see that the resulting column has the lattitude and longitude for the address or cross streets.
+- You should see that the resulting column has the latitude and longitude for the address or cross streets.
+
+### Organizing Movie metadata
+
+#### Normalizing Monetary Info
+1. Click 'Open' in the top right - this will open a new Open Refine tab
+2. Load 'gbp_conversion.csv' and create a project called 'conversion'
+3. Go back to the @@@@movie@@@@@ project, click Year > Create column based on this column.
+4. Call the new column 'USDperGBP' and then in the GREL window, type `cell.cross("conversion", "Year")[0].cells["USDperGBP"].value`. This looks to the "conversion" project, looks at the "Year" column in it, matches it to the "year" column in our project, and then pulls the "USDperGBP" into this new column. Click OK.
+5.click budget, transform
+6. in the GREL box, type `value * cells["USDperGBP"].value` to take the budget column and multiply it by the conversion rate. Click OK.
+7. Now click on the EUR facet. Since there's just one in this dataset, it's easier to do this manually than to join a whole new dataset. The Euro to USD rate was about 1.33 in 2014. Select budget > Edit Cells > Transform and then enter `value * 1.33`. Click OK.
+8. Click on 'Remove All' on the left to remove our budget facet and bring back the entire dataset. Now that all of our budget numbers are in USD, let's remove the budget_currency column. budget_currency > Edit column > Remove this column.
+9. Do the same for the box office numbers. box_office_currency > Facet > Text facet.
+10. Select GBP.
+11. box_office > Edit cells > Transform. Enter `value * cells["USDperGBP"].value`. Click OK.
+12. box_office_currency > Edit column > Remove this column.
+
+
+5. *Now we have everything set to a GBP>USD Conversion rate, but obviously that's not the case for all of them.*
+5. Select Budget Currency > Facet > Text Facet. Click on GBP to limit to 18 rows.
+6.
 
 ## Additional OpenRefine Resources
 - [OpenRefine Wiki](https://github.com/OpenRefine/OpenRefine/wiki)
