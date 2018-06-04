@@ -105,20 +105,39 @@ You may also want to export the entire project. This is useful if you want to sh
 1. Click 'Open' in the top right - this will open a new Open Refine tab
 2. Load 'gbp_conversion.csv' and create a project called 'conversion'
 3. Go back to the @@@@movie@@@@@ project, click Year > Create column based on this column.
-4. Call the new column 'USDperGBP' and then in the GREL window, type `cell.cross("conversion", "Year")[0].cells["USDperGBP"].value`. This looks to the "conversion" project, looks at the "Year" column in it, matches it to the "year" column in our project, and then pulls the "USDperGBP" into this new column. Click OK.
+4. Call the new column 'GPBperUSD' and then in the GREL window, type `cell.cross("conversion", "Year")[0].cells["GBPperUSD"].value`. This looks to the "conversion" project, looks at the "Year" column in it, matches it to the "year" column in our project, and then pulls the "GBPperUSD" into this new column. Click OK.
 5.click budget, transform
-6. in the GREL box, type `value * cells["USDperGBP"].value` to take the budget column and multiply it by the conversion rate. Click OK.
+6. in the GREL box, type `value * cells["GBPperUSD"].value` to take the budget column and multiply it by the conversion rate. Click OK.
 7. Now click on the EUR facet. Since there's just one in this dataset, it's easier to do this manually than to join a whole new dataset. The Euro to USD rate was about 1.33 in 2014. Select budget > Edit Cells > Transform and then enter `value * 1.33`. Click OK.
 8. Click on 'Remove All' on the left to remove our budget facet and bring back the entire dataset. Now that all of our budget numbers are in USD, let's remove the budget_currency column. budget_currency > Edit column > Remove this column.
 9. Do the same for the box office numbers. box_office_currency > Facet > Text facet.
 10. Select GBP.
-11. box_office > Edit cells > Transform. Enter `value * cells["USDperGBP"].value`. Click OK.
-12. box_office_currency > Edit column > Remove this column.
+11. box_office > Edit cells > Transform. Enter `value * cells["GBPperUSD"].value`. Click OK.
+12. box_office_currency > Edit column > Remove this column. Repeat for 'GBPperUSD'
 
+#### Working with Multi-Value Cells
+This data has multiple actors listed in the 'Starring' column, with each name separated by a comma. For many purposes, this works great—it's the most compact and concise way to represent this information. But for many purposes, you may need to format this data differently. Here are a few different ways you may need to export this dataset.
 
-5. *Now we have everything set to a GBP>USD Conversion rate, but obviously that's not the case for all of them.*
-5. Select Budget Currency > Facet > Text Facet. Click on GBP to limit to 18 rows.
-6.
+**Multiple 'Starring' Columns with One Person in Each**
+1. Select Starring > Edit Column > Split into several columns
+2. You'll see a few options—for this you want to leave things as-is and separate on the commas. Click OK.
+3. You now have 19 separate 'Starring' columns, and each column is either empty or has one value.
+
+Let's try another way. Click on 'Undo/Redo' in the top left and undo your split command.
+
+**Create TRUE/FALSE Columns Based on Values**
+1. Select Starring > Edit column based on this column
+2. In the GREL window @@@@@
+
+**Create an Actor-Movie Network Dataset**
+To create networks, we need to have source and target pairs—in other words, we need a separate line with each unique combination of movie and actor.
+
+1. Select Starring > Edit cells > Split multi-valued cells
+2. This will open a dialog box asking for a separator—leave the comma and click OK.
+3. You'll see that we've now added several rows below each row with multiple actors listed. The actor name is the only bit of information in the entire row.
+4. Select movie_id > Edit cells > Fill down.
+5. You can do this for each column of information that you want in the network dataset.
+
 
 ## Additional OpenRefine Resources
 - [OpenRefine Wiki](https://github.com/OpenRefine/OpenRefine/wiki)

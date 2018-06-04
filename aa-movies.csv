@@ -54,7 +54,7 @@ captain-blood-1935,Captain Blood,1935,8,no,119,1.242,2.5,USD,USD,"Errol Flynn, O
 david-copperfield-1935,David Copperfield,1935,8,no,NA,NA,NA,USD,USD,
 the-informer-1935,The Informer,1935,8,no,91,0.243,0.95,USD,USD,
 the-lives-of-a-bengal-lancer-1935,The Lives of a Bengal Lancer,1935,8,no,109,NA,49,USD,USD,
-a-midsummer-nights-dream-1935,A Midsummer Night's Dream,1935,8,no,133,0.981,1.229,USD,USD,"Olivia de Havilland (Hermia), Jean Muir (Helena), Dick Powell (Lysander), Ross Alexander (Demetrius), James Cagney (Bottom), Mickey Rooney (Puck), Joe E. Brown (Flute), Victor Jory (Oberon), Anita Louise (Titania), Ian Hunter (Theseus)"
+a-midsummer-nights-dream-1935,A Midsummer Night's Dream,1935,8,no,133,0.981,1.229,USD,USD,"Olivia de Havilland, Jean Muir, Dick Powell, Ross Alexander, James Cagney, Mickey Rooney, Joe E. Brown, Victor Jory, Anita Louise, Ian Hunter"
 les-misrables-1935,Les Misérables,1935,8,no,108,NA,NA,USD,USD,
 naughty-marietta-1935,Naughty Marietta,1935,8,no,105,0.782,2.057,USD,USD,
 ruggles-of-red-gap-1935,Ruggles of Red Gap,1935,8,no,90,NA,NA,USD,USD,"Charles Laughton, Mary Boland, Charlie Ruggles, ZaSu Pitts"
@@ -364,7 +364,7 @@ the-accidental-tourist-1988,The Accidental Tourist,1988,61,no,NA,NA,NA,USD,USD,
 dangerous-liaisons-1988,Dangerous Liaisons,1988,61,no,119,14,34.7,USD,USD,"Glenn Close, John Malkovich, Michelle Pfeiffer, Swoosie Kurtz, Keanu Reeves, Mildred Natwick, Uma Thurman"
 mississippi-burning-1988,Mississippi Burning,1988,61,no,128,15,34.6,USD,USD,"Gene Hackman, Willem Dafoe"
 working-girl-1988,Working Girl,1988,61,no,116,28.6,102,USD,USD,"Melanie Griffith, Harrison Ford, Sigourney Weaver"
-driving-miss-daisy-1989,Driving Miss Daisy,1989,62,yes,100,0,1e-4,USD,USD,"Morgan Freeman, Jessica Tandy, Dan Aykroyd, Patti LuPone, Esther Rolle"
+driving-miss-daisy-1989,Driving Miss Daisy,1989,62,yes,100,0,1.00E-04,USD,USD,"Morgan Freeman, Jessica Tandy, Dan Aykroyd, Patti LuPone, Esther Rolle"
 born-on-the-fourth-of-july-1989,Born on the Fourth of July,1989,62,no,145,14,161,USD,USD,"Tom Cruise, Kyra Sedgwick, Raymond J. Barry, Jerry Levine, Frank Whaley, Willem Dafoe"
 dead-poets-society-1989,Dead Poets Society,1989,62,no,128,16.4,235.9,USD,USD,
 field-of-dreams-1989,Field of Dreams,1989,62,no,107,15,84.4,USD,USD,"Kevin Costner, Amy Madigan, James Earl Jones, Ray Liotta, Burt Lancaster"
@@ -389,7 +389,7 @@ the-fugitive-1993,The Fugitive,1993,66,no,130,44,368.9,USD,USD,"Harrison Ford, T
 in-the-name-of-the-father-1993,In the Name of the Father,1993,66,no,133,13,65.8,USD,USD,"Daniel Day-Lewis, Pete Postlethwaite, Emma Thompson"
 the-piano-1993,The Piano,1993,66,no,117,NA,NA,USD,USD,"Holly Hunter, Harvey Keitel, Sam Neill, Anna Paquin, Kerry Walker, Genevieve Lemon"
 the-remains-of-the-day-1993,The Remains of the Day,1993,66,no,134,15,63.9,USD,USD,"Anthony Hopkins, Emma Thompson, James Fox, Christopher Reeve, Peter Vaughan, Hugh Grant, Michael Lonsdale, Tim Pigott-Smith"
-forrest-gump-1994,Forrest Gump,1994,67,yes,142,1e-4,7e-4,USD,USD,"Tom Hanks, Robin Wright, Gary Sinise, Mykelti Williamson, Sally Field"
+forrest-gump-1994,Forrest Gump,1994,67,yes,142,1.00E-04,7.00E-04,USD,USD,"Tom Hanks, Robin Wright, Gary Sinise, Mykelti Williamson, Sally Field"
 four-weddings-and-a-funeral-1994,Four Weddings and a Funeral,1994,67,no,117,2.8,245.7,GBP,USD,"Hugh Grant, Andie MacDowell, Kristin Scott Thomas, Simon Callow, James Fleet, John Hannah, Charlotte Coleman, David Bower, Corin Redgrave, Rowan Atkinson"
 pulp-fiction-1994,Pulp Fiction,1994,67,no,154,8.5,213.9,USD,USD,"John Travolta, Samuel L. Jackson, Uma Thurman, Harvey Keitel, Tim Roth, Amanda Plummer, Maria de Medeiros, Ving Rhames, Eric Stoltz, Rosanna Arquette, Christopher Walken, Bruce Willis"
 quiz-show-1994,Quiz Show,1994,67,no,133,31,24.8,USD,USD,"John Turturro, Rob Morrow, Ralph Fiennes, David Paymer, Paul Scofield"
@@ -427,14 +427,14 @@ traffic-2000,Traffic,2000,73,no,147,48,207.5,USD,USD,"Michael Douglas, Don Chead
 a-beautiful-mind-2001,A Beautiful Mind,2001,74,yes,135,58,313,USD,USD,"Russell Crowe, Ed Harris, Jennifer Connelly, Paul Bettany, Adam Goldberg, Judd Hirsch, Josh Lucas, Anthony Rapp, Christopher Plummer"
 gosford-park-2001,Gosford Park,2001,74,no,137,19.8,87.8,USD,USD,
 in-the-bedroom-2001,In the Bedroom,2001,74,no,131,1.7,43.4,USD,USD,
-the-lord-of-the-rings-the-fellowship-of-the-ring-2001,The Lord of the Rings: The Fellowship of the Ring,2001,74,no,178,1e-4,9e-4,USD,USD,"Elijah Wood, Ian McKellen, Liv Tyler, Viggo Mortensen, Sean Astin, Cate Blanchett, John Rhys-Davies, Billy Boyd, Dominic Monaghan, Orlando Bloom, Christopher Lee, Hugo Weaving, Sean Bean, Ian Holm, Andy Serkis"
+the-lord-of-the-rings-the-fellowship-of-the-ring-2001,The Lord of the Rings: The Fellowship of the Ring,2001,74,no,178,1.00E-04,9.00E-04,USD,USD,"Elijah Wood, Ian McKellen, Liv Tyler, Viggo Mortensen, Sean Astin, Cate Blanchett, John Rhys-Davies, Billy Boyd, Dominic Monaghan, Orlando Bloom, Christopher Lee, Hugo Weaving, Sean Bean, Ian Holm, Andy Serkis"
 moulin-rouge-2001,Moulin Rouge!,2001,74,no,128,52,179.2,USD,USD,"Nicole Kidman, Ewan McGregor, John Leguizamo, Jim Broadbent, Richard Roxburgh"
 chicago-2002,Chicago,2002,75,yes,113,45,306.8,USD,USD,
 gangs-of-new-york-2002,Gangs of New York,2002,75,no,NA,NA,NA,USD,USD,
 the-hours-2002,The Hours,2002,75,no,114,25,108.8,USD,USD,
 the-lord-of-the-rings-the-two-towers-2002,The Lord of the Rings: The Two Towers,2002,75,no,179,94,926,USD,USD,"Elijah Wood, Ian McKellen, Liv Tyler, Viggo Mortensen, Sean Astin, Cate Blanchett, John Rhys-Davies, Bernard Hill, Christopher Lee, Billy Boyd, Dominic Monaghan, Orlando Bloom, Hugo Weaving, Miranda Otto, David Wenham, Brad Dourif, Sean Bean, Andy Serkis"
 the-pianist-2002,The Pianist,2002,75,no,150,35,120.1,USD,USD,"Adrien Brody, Thomas Kretschmann, Frank Finlay, Maureen Lipman, Emilia Fox, Michał Żebrowski"
-the-lord-of-the-rings-the-return-of-the-king-2003,The Lord of the Rings: The Return of the King,2003,76,yes,200,1e-4,0,USD,USD,"Elijah Wood, Ian McKellen, Liv Tyler, Viggo Mortensen, Sean Astin, Cate Blanchett, John Rhys-Davies, Bernard Hill, Billy Boyd, Dominic Monaghan, Orlando Bloom, Hugo Weaving, Miranda Otto, David Wenham, Karl Urban, John Noble, Andy Serkis, Ian Holm, Sean Bean"
+the-lord-of-the-rings-the-return-of-the-king-2003,The Lord of the Rings: The Return of the King,2003,76,yes,200,1.00E-04,0,USD,USD,"Elijah Wood, Ian McKellen, Liv Tyler, Viggo Mortensen, Sean Astin, Cate Blanchett, John Rhys-Davies, Bernard Hill, Billy Boyd, Dominic Monaghan, Orlando Bloom, Hugo Weaving, Miranda Otto, David Wenham, Karl Urban, John Noble, Andy Serkis, Ian Holm, Sean Bean"
 lost-in-translation-2003,Lost in Translation,2003,76,no,101,4,119.7,USD,USD,"Bill Murray, Scarlett Johansson, Giovanni Ribisi, Anna Faris, Fumihiro Hayashi"
 master-and-commander-the-far-side-of-the-world-2003,Master and Commander: The Far Side of the World,2003,76,no,138,150,212,USD,USD,"Russell Crowe, Paul Bettany, Billy Boyd, James D'Arcy, Chris Larkin, Edward Woodall"
 mystic-river-2003,Mystic River,2003,76,no,137,30,156.8,USD,USD,"Sean Penn, Tim Robbins, Kevin Bacon, Laurence Fishburne, Marcia Gay Harden, Laura Linney"
@@ -481,7 +481,7 @@ the-fighter-2010,The Fighter,2010,83,no,116,25,129.2,USD,USD,"Mark Wahlberg, Chr
 inception-2010,Inception,2010,83,no,148,160,828.3,USD,USD,"Leonardo DiCaprio, Ken Watanabe, Joseph Gordon-Levitt, Marion Cotillard, Ellen Page, Tom Hardy, Cillian Murphy, Tom Berenger, Michael Caine"
 the-kids-are-all-right-2010,The Kids Are All Right,2010,83,no,107,4,34.7,USD,USD,
 the-social-network-2010,The Social Network,2010,83,no,120,40,224.9,USD,USD,"Jesse Eisenberg, Andrew Garfield, Justin Timberlake, Armie Hammer, Max Minghella"
-toy-story-3-2010,Toy Story 3,2010,83,no,103,2e-4,0,USD,USD,"Tom Hanks, Tim Allen, Joan Cusack, Don Rickles, Wallace Shawn, John Ratzenberger, Estelle Harris, Blake Clark, Ned Beatty, Michael Keaton, Jodi Benson, John Morris"
+toy-story-3-2010,Toy Story 3,2010,83,no,103,2.00E-04,0,USD,USD,"Tom Hanks, Tim Allen, Joan Cusack, Don Rickles, Wallace Shawn, John Ratzenberger, Estelle Harris, Blake Clark, Ned Beatty, Michael Keaton, Jodi Benson, John Morris"
 true-grit-2010,True Grit,2010,83,no,110,38,252.3,USD,USD,"Jeff Bridges, Matt Damon, Josh Brolin, Barry Pepper, Hailee Steinfeld"
 winters-bone-2010,Winter's Bone,2010,83,no,100,2,16.1,USD,USD,"Jennifer Lawrence, John Hawkes, Kevin Breznahan, Dale Dickey, Garret Dillahunt, Sheryl Lee, Tate Taylor"
 the-artist-2011,The Artist,2011,84,yes,100,15,133.4,USD,USD,"Jean Dujardin, Bérénice Bejo"
