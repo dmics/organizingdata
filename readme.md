@@ -9,13 +9,15 @@ Written by Brandon T. Locke; portions from Thomas G. Padilla
 **This tutorial will demonstrate some of the most popular and powerful features of OpenRefine, including geocoding using an API, algorithmic word normalization and correction, and working with multi-value cells.**
 
 ### Data
-#### Comic Book Metadata (authors-people.csv)
+**You can [download a .zip file of the following three datasets](https://github.com/dmics/organizingdata/blob/master/organizingdata.zip).**
+
+#### Comic Book Metadata (**authors-people.csv**)
 Dataset comprising records for comic-books and books relating to comics in the British National Bibliography.[See the full readme](http://www.thomaspadilla.org/data/dataprep/Readme.txt)
 
-#### Academy Award Nominee Metadata (aa-movies.csv)
-This is a set of data fields scraped from Wikipedia pages for every movie nominated for an Academy Award for best film.
+#### Academy Award Nominee Metadata (**aa-movies.csv**)
+This is a set of data fields scraped from Wikipedia pages for every movie nominated for an Academy Award for best film. Data provided by Taylor Arnold.
 
-#### British Pound to US Dollar Conversion Data (gbp_conversion.csv)
+#### British Pound to US Dollar Conversion Data (**gbp_conversion.csv**)
 This is a GBP to USD conversion rate dataset from 1927 to 2017 downloaded from [MeasuringWorth.com](https://www.measuringworth.com).
 
 ### Organizing Comics Metadata
