@@ -9,13 +9,13 @@ Written by Brandon T. Locke; portions from Thomas G. Padilla
 **This tutorial will demonstrate some of the most popular and powerful features of OpenRefine, including geocoding using an API, algorithmic word normalization and correction, and working with multi-value cells.**
 
 ### Data
-#### Comic Book Metadata
+#### Comic Book Metadata (authors-people.csv)
 Dataset comprising records for comic-books and books relating to comics in the British National Bibliography.[See the full readme](http://www.thomaspadilla.org/data/dataprep/Readme.txt)
-@@@link to dataset@@@
 
-#### Academy Award Nominee Metadata
+#### Academy Award Nominee Metadata (aa-movies.csv)
+This is a set of data fields scraped from Wikipedia pages for every movie nominated for an Academy Award for best film.
 
-#### British Pound to US Dollar Conversion Data
+#### British Pound to US Dollar Conversion Data (gbp_conversion.csv)
 This is a GBP to USD conversion rate dataset from 1927 to 2017 downloaded from [MeasuringWorth.com](https://www.measuringworth.com).
 
 ### Organizing Comics Metadata
@@ -127,7 +127,10 @@ Let's try another way. Click on 'Undo/Redo' in the top left and undo your split 
 
 **Create TRUE/FALSE Columns Based on Values**
 1. Select Starring > Edit column based on this column
-2. In the GREL window @@@@@
+2. In the GREL window, type `if(value.contains("Marie Prevost"), "true", "false")`
+3. Call this column 'isMariePrevost' and click OK.
+4. Do this again for Thomas Meighan. Starring > Edit column based on this column.
+5. Type `if(value.contains("Thomas Meighan"), "true", "false")`, name it 'isThomasMeighan' and click OK.
 
 **Create an Actor-Movie Network Dataset**
 To create networks, we need to have source and target pairs—in other words, we need a separate line with each unique combination of movie and actor.
