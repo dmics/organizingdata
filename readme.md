@@ -21,7 +21,7 @@ This is a set of data fields scraped from Wikipedia pages for every movie nomina
 This is a GBP to USD conversion rate dataset from 1927 to 2017 downloaded from [MeasuringWorth.com](https://www.measuringworth.com).
 
 ### Organizing Comics Metadata
-This portion is adapted from [Thomas Padilla's 'Getting Started with OpenRefine'](http://thomaspadilla.org/dataprep/)
+*This portion is adapted from [Thomas Padilla's 'Getting Started with OpenRefine'](http://thomaspadilla.org/dataprep/)*
 
 #### Loading the Dataset
 1. Open OpenRefine - it should open a window in your default web browser
@@ -72,12 +72,10 @@ The other method of transformation allows you to utilize the [OpenRefine Express
 
 Since there's a limit of 2,500 requests per day and the API takes a bit of time, we'll filter out just two rows to gather latitude and longitude.
 
-----@@@ find a good way to facet this so it's limited ------
-
-- Click Commercial Vehicle > Facet > Text Facet
-- Click 'True' to only show the 2 rows that were related to traffic accidents
-- Click Location > Edit Column > Add Column by Fetching URLs... and enter this expression: `"http://maps.google.com/maps/api/geocode/json?sensor=false&address=" + escape(value, "url")`
-- Name the column 'geocodingResponse' and click OK. This will take 20-30 seconds to finish.
+- Click Publisher > Facet > Text Facet
+- Click on [Associated Newspapers] to limit our set to two rows.
+- Click Place of Publication > Edit Column > Add Column by Fetching URLs... and enter this expression: `"http://maps.google.com/maps/api/geocode/json?sensor=false&address=" + escape(value, "url")`
+- Name the column 'geocodingResponse', add a 0 to the 'Throttle delay,' and click OK. This will take 20-30 seconds to finish.
 - The new 'geocodingResponse' column won't be very clear or useful - it will be the full JSON response with all of the information Google has about that location.
 - Click geocodingResponse > Edit Column > Add Column based on this column
 - Enter `with(value.parseJson().results[0].geometry.location, pair, pair.lat +", " + pair.lng)` and call the new column 'latlng.' Hit OK. This will parse the JSON and correctly format the latitute and longitude in the new column.
@@ -98,15 +96,27 @@ You may also want to export the entire project. This is useful if you want to sh
 - Name the column 'geocodingResponse' and click OK. This will take quite some time to finish.
 - The new 'geocodingResponse' column won't be very clear or useful - it will be the full JSON response with all of the information Google has about that location.
 - Click geocodingResponse > Edit Column > Add Column based on this column
-- Enter `with(value.parseJson().resourceSets[0].resources[0].point.coordinates, pair, pair[0] +", " + pair[1])` and call the new column 'latlng.' Hit OK. This will parse the JSON and correctly format the latitute and longitude in the neew column.
+- Enter `with(value.parseJson().resourceSets[0].resources[0].point.coordinates, pair, pair[0] +", " + pair[1])` and call the new column 'latlng.' Hit OK. This will parse the JSON and correctly format the latitute and longitude in the new column.
 - You should see that the resulting column has the latitude and longitude for the address or cross streets.
 
 ### Organizing Movie metadata
 
-#### Normalizing Monetary Info
+#### Loading the Dataset
+1. Open OpenRefine - it should open a window in your default web browser
+1. Click 'Browse' and locate the aa-movies.csv on your hard drive. Then click 'Next.'
+1. The Configure Parsing Options screen will ask you to confirm a few things. It has made guesses, based on the data, on the type of file, the character encoding and the character that separates columns. Take a look at the data in the top window and make sure everything looks like it's showing up correctly.
+1. Name the project "movies-metadata" and click 'Create Project' in the top right corner.
+
+#### Evaluation
+Take a minute to look around. Consider the structure of the data with principles of "tidy data" in mind. This will help guide what types of operations you perform on the data. Also take time to evaluate the type of information that is represented and what type of questions you might want to ask of it (e.g. Which publishers are most prominently represented in the collection?)
+
+#### Normalizing Monetary Info by Joining a New Dataset
+1. One thing we may notice right away is that some most of the budget and box_office numbers are in USD, but not all of them are.
+1. Before we do anything, we'll want to make sure that our two numbered columns—budget & box_office—are being recognized as numbers and not strings. OpenRefine shows numbers in green, and also aligns them on the right side of the column.
+1. To change a column from a string to a number, click on the column header > Edit Cells > Common transforms > To numbers.
 1. Click 'Open' in the top right - this will open a new Open Refine tab
 2. Load 'gbp_conversion.csv' and create a project called 'conversion'
-3. Go back to the @@@@movie@@@@@ project, click Year > Create column based on this column.
+3. Go back to the movies-metadata project, click Year > Create column based on this column.
 4. Call the new column 'GPBperUSD' and then in the GREL window, type `cell.cross("conversion", "Year")[0].cells["GBPperUSD"].value`. This looks to the "conversion" project, looks at the "Year" column in it, matches it to the "year" column in our project, and then pulls the "GBPperUSD" into this new column. Click OK.
 5.click budget, transform
 6. in the GREL box, type `value * cells["GBPperUSD"].value` to take the budget column and multiply it by the conversion rate. Click OK.
