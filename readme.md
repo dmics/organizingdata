@@ -20,6 +20,64 @@ This is a set of data fields scraped from Wikipedia pages for every movie nomina
 #### British Pound to US Dollar Conversion Data (**gbp_conversion.csv**)
 This is a GBP to USD conversion rate dataset from 1927 to 2017 downloaded from [MeasuringWorth.com](https://www.measuringworth.com).
 
+### Organizing Movie metadata
+
+#### Loading the Dataset
+1. Click 'Open' in the top right to open a new OpenRefine tab
+1. Click 'Browse' and locate the aa-movies.csv on your hard drive. Then click 'Next.'
+1. The Configure Parsing Options screen will ask you to confirm a few things. It has made guesses, based on the data, on the type of file, the character encoding and the character that separates columns. Take a look at the data in the top window and make sure everything looks like it's showing up correctly.
+1. Name the project "movies-metadata" and click 'Create Project' in the top right corner.
+
+#### Evaluation
+Take a minute to look around. Consider the structure of the data with principles of "tidy data" in mind. This will help guide what types of operations you perform on the data. Also take time to evaluate the type of information that is represented and what type of questions you might want to ask of it (e.g. Which publishers are most prominently represented in the collection?)
+
+#### Normalizing Monetary Info by Joining a New Dataset
+1. One thing we may notice right away is that some most of the budget and box_office numbers are in USD, but not all of them are.
+1. Before we do anything, we'll want to make sure that our two numbered columns—budget & box_office—are being recognized as numbers and not strings. OpenRefine shows numbers in green, and also aligns them on the right side of the column.
+1. To change a column from a string to a number, click on the column header > Edit Cells > Common transforms > To numbers.
+1. Click 'Open' in the top right - this will open a new Open Refine tab
+2. Load 'gbp_conversion.csv' and create a project called 'conversion'
+3. Click GPBtoUSD > Edit Cells > Common transforms > To numbers
+3. Go back to the movies-metadata project, click Year > Add column based on this column.
+4. Call the new column 'GPBtoUSD' and then in the GREL window, type `cell.cross("conversion", "Year")[0].cells["GBPtoUSD"].value`. This looks to the "conversion" project, looks at the "Year" column in it, matches it to the "year" column in our project, and then pulls the "GBPtoUSD" into this new column. Click OK.
+5. Click on budget_currency > Facet > Text facet. Then click on GBP to only show British Pounds.
+6. Click on Budget > Edit Cells > Transform. In the GREL box, type `value * cells["GBPtoUSD"].value` to take the budget column and multiply it by the conversion rate. Click OK.
+7. Now click on the EUR facet. Since there's just one in this dataset, it's easier to do this manually than to join a whole new dataset. The Euro to USD rate was about 1.33 in 2014. Select budget > Edit Cells > Transform and then enter `value * 1.33`. Click OK.
+8. Click on 'Remove All' on the left to remove our budget facet and bring back the entire dataset.
+9. Do the same for the box office numbers. box_office_currency > Facet > Text facet.
+10. Select GBP.
+11. box_office > Edit cells > Transform. Enter `value * cells["GBPtoUSD"].value`. Click OK.
+12.  Now that all of our budget numbers are in USD, let's remove the budget_currency column. budget_currency > Edit column > Remove this column. Repeat for box_office_currency and GBPtoUSD.
+
+#### Working with Multi-Value Cells
+This data has multiple actors listed in the 'Starring' column, with each name separated by a comma. For many purposes, this works great—it's the most compact and concise way to represent this information. But for many purposes, you may need to format this data differently. Here are a few different ways you may need to export this dataset.
+
+**Multiple 'Starring' Columns with One Person in Each**
+1. Select Starring > Edit Column > Split into several columns
+2. You'll see a few options—for this you want to leave things as-is and separate on the commas. Click OK.
+3. You now have 19 separate 'Starring' columns, and each column is either empty or has one value.
+
+Let's try another way. Click on 'Undo/Redo' in the top left and undo your split command.
+
+**Create TRUE/FALSE Columns Based on Values**
+1. Select Starring > Edit column based on this column
+2. In the GREL window, type `if(value.contains("Marie Prevost"), "true", "false")`
+3. Call this column 'isMariePrevost' and click OK.
+4. Do this again for Thomas Meighan. Starring > Edit column based on this column.
+5. Type `if(value.contains("Thomas Meighan"), "true", "false")`, name it 'isThomasMeighan' and click OK.
+
+**Create an Actor-Movie Network Dataset**
+To create networks, we need to have source and target pairs—in other words, we need a separate line with each unique combination of movie and actor.
+
+1. Select Starring > Edit cells > Split multi-valued cells
+2. This will open a dialog box asking for a separator—leave the comma and click OK.
+3. You'll see that we've now added several rows below each row with multiple actors listed. The actor name is the only bit of information in the entire row.
+4. Select movie_id > Edit cells > Fill down.
+5. You can do this for each column of information that you want in the network dataset.
+6. We have lots of movies that don't have any actor information, meaning they won't really work with our network dataset. Remove these by clicking Starring > Facet, Customized Facets > Facet by blank.
+7. Click True to select 248 rows. Click on All > Edit Rows > Remove all matching rows.
+8. Click 'Remove All' in the top left to clear the facet.
+
 ### Organizing Comics Metadata
 *This portion is adapted from [Thomas Padilla's 'Getting Started with OpenRefine'](http://thomaspadilla.org/dataprep/)*
 
@@ -101,65 +159,6 @@ You may also want to export the entire project. This is useful if you want to sh
 - Click geocodingResponse > Edit Column > Add Column based on this column
 - Enter `with(value.parseJson().resourceSets[0].resources[0].point.coordinates, pair, pair[0] +", " + pair[1])` and call the new column 'latlng.' Hit OK. This will parse the JSON and correctly format the latitute and longitude in the new column.
 - You should see that the resulting column has the latitude and longitude for the address or cross streets.
-
-### Organizing Movie metadata
-
-#### Loading the Dataset
-1. Click 'Open' in the top right to open a new OpenRefine tab
-1. Click 'Browse' and locate the aa-movies.csv on your hard drive. Then click 'Next.'
-1. The Configure Parsing Options screen will ask you to confirm a few things. It has made guesses, based on the data, on the type of file, the character encoding and the character that separates columns. Take a look at the data in the top window and make sure everything looks like it's showing up correctly.
-1. Name the project "movies-metadata" and click 'Create Project' in the top right corner.
-
-#### Evaluation
-Take a minute to look around. Consider the structure of the data with principles of "tidy data" in mind. This will help guide what types of operations you perform on the data. Also take time to evaluate the type of information that is represented and what type of questions you might want to ask of it (e.g. Which publishers are most prominently represented in the collection?)
-
-#### Normalizing Monetary Info by Joining a New Dataset
-1. One thing we may notice right away is that some most of the budget and box_office numbers are in USD, but not all of them are.
-1. Before we do anything, we'll want to make sure that our two numbered columns—budget & box_office—are being recognized as numbers and not strings. OpenRefine shows numbers in green, and also aligns them on the right side of the column.
-1. To change a column from a string to a number, click on the column header > Edit Cells > Common transforms > To numbers.
-1. Click 'Open' in the top right - this will open a new Open Refine tab
-2. Load 'gbp_conversion.csv' and create a project called 'conversion'
-3. Click GPBtoUSD > Edit Cells > Common transforms > To numbers
-3. Go back to the movies-metadata project, click Year > Add column based on this column.
-4. Call the new column 'GPBtoUSD' and then in the GREL window, type `cell.cross("conversion", "Year")[0].cells["GBPtoUSD"].value`. This looks to the "conversion" project, looks at the "Year" column in it, matches it to the "year" column in our project, and then pulls the "GBPtoUSD" into this new column. Click OK.
-5. Click on budget_currency > Facet > Text facet. Then click on GBP to only show British Pounds.
-6. Click on Budget > Edit Cells > Transform. In the GREL box, type `value * cells["GBPtoUSD"].value` to take the budget column and multiply it by the conversion rate. Click OK.
-7. Now click on the EUR facet. Since there's just one in this dataset, it's easier to do this manually than to join a whole new dataset. The Euro to USD rate was about 1.33 in 2014. Select budget > Edit Cells > Transform and then enter `value * 1.33`. Click OK.
-8. Click on 'Remove All' on the left to remove our budget facet and bring back the entire dataset.
-9. Do the same for the box office numbers. box_office_currency > Facet > Text facet.
-10. Select GBP.
-11. box_office > Edit cells > Transform. Enter `value * cells["GBPtoUSD"].value`. Click OK.
-12.  Now that all of our budget numbers are in USD, let's remove the budget_currency column. budget_currency > Edit column > Remove this column. Repeat for box_office_currency and GBPtoUSD.
-
-#### Working with Multi-Value Cells
-This data has multiple actors listed in the 'Starring' column, with each name separated by a comma. For many purposes, this works great—it's the most compact and concise way to represent this information. But for many purposes, you may need to format this data differently. Here are a few different ways you may need to export this dataset.
-
-**Multiple 'Starring' Columns with One Person in Each**
-1. Select Starring > Edit Column > Split into several columns
-2. You'll see a few options—for this you want to leave things as-is and separate on the commas. Click OK.
-3. You now have 19 separate 'Starring' columns, and each column is either empty or has one value.
-
-Let's try another way. Click on 'Undo/Redo' in the top left and undo your split command.
-
-**Create TRUE/FALSE Columns Based on Values**
-1. Select Starring > Edit column based on this column
-2. In the GREL window, type `if(value.contains("Marie Prevost"), "true", "false")`
-3. Call this column 'isMariePrevost' and click OK.
-4. Do this again for Thomas Meighan. Starring > Edit column based on this column.
-5. Type `if(value.contains("Thomas Meighan"), "true", "false")`, name it 'isThomasMeighan' and click OK.
-
-**Create an Actor-Movie Network Dataset**
-To create networks, we need to have source and target pairs—in other words, we need a separate line with each unique combination of movie and actor.
-
-1. Select Starring > Edit cells > Split multi-valued cells
-2. This will open a dialog box asking for a separator—leave the comma and click OK.
-3. You'll see that we've now added several rows below each row with multiple actors listed. The actor name is the only bit of information in the entire row.
-4. Select movie_id > Edit cells > Fill down.
-5. You can do this for each column of information that you want in the network dataset.
-6. We have lots of movies that don't have any actor information, meaning they won't really work with our network dataset. Remove these by clicking Starring > Facet, Customized Facets > Facet by blank.
-7. Click True to select 248 rows. Click on All > Edit Rows > Remove all matching rows.
-8. Click 'Remove All' in the top left to clear the facet.
-
 
 ## Additional OpenRefine Resources
 - [OpenRefine Wiki](https://github.com/OpenRefine/OpenRefine/wiki)
