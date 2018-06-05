@@ -89,7 +89,10 @@ In the top right corner, you can click on 'Export' and save the data in a number
 You may also want to export the entire project. This is useful if you want to share the project with others, or if you want to continue working on a different machine. It's also useful for transparency and documentation, as every change you've made is documented (and reversible).
 
 #### Full Geocoding Instructions
-*Note: this will take an hour or two to process fully, so it's a good idea to set it up to run overnight*
+
+*[Geocod.io](https://geocod.io/) may also be a good option*
+
+*Note: this will take several hours to process fully, so it's a good idea to set it up to run overnight*
 
 - Get a MapQuest API Key from the [MapQuest Developer Site](https://developer.mapquest.com/) - click the 'Get your Free API Key' button on the front page and fill out the information.
 - Once you have an API key, Location > Edit Column > Add Column by Fetching URLs... and enter this expression: `'http://open.mapquestapi.com/nominatim/v1/search.php?' + 'key=YOUR KEY&' + 'format=json&' + 'q=' + escape(value, 'url')` **Note: be sure to add your own API key in the above expression where it says `*YOUR KEY*`**
@@ -102,7 +105,7 @@ You may also want to export the entire project. This is useful if you want to sh
 ### Organizing Movie metadata
 
 #### Loading the Dataset
-1. Open OpenRefine - it should open a window in your default web browser
+1. Click 'Open' in the top right to open a new OpenRefine tab
 1. Click 'Browse' and locate the aa-movies.csv on your hard drive. Then click 'Next.'
 1. The Configure Parsing Options screen will ask you to confirm a few things. It has made guesses, based on the data, on the type of file, the character encoding and the character that separates columns. Take a look at the data in the top window and make sure everything looks like it's showing up correctly.
 1. Name the project "movies-metadata" and click 'Create Project' in the top right corner.
